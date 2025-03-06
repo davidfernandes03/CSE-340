@@ -16,9 +16,6 @@
 body {
   font-family: 'Merriweather', serif;
   color: var(--black);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
   margin: auto;
 }
 
@@ -73,6 +70,11 @@ main {
   padding: 10px 0px;
   border-radius: 8px;
   flex: 1;
+}
+
+h1 {
+  margin: 5px;
+  text-align: center;
 }
 
 h2 {
