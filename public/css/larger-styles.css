@@ -1,0 +1,74 @@
+@media (min-width: 770px) {
+    html {
+        background-image: url("/images/site/small_check.jpg");
+        background-size: cover;
+        padding: 20px;
+    }
+      
+      body {
+        width: 90%;
+        max-width: 900px;
+        background-color: var(--white);
+        border: 6px solid var(--primary);
+        border-radius: 10px;
+    }
+
+    header {
+        margin: 30px 10px;
+    }
+    
+    nav {
+        margin: 0px 10px;
+        border-radius: 5px;
+    }
+
+    main {
+        margin: 0px 10px;
+    }
+
+    h2 {
+        font-size: 24px;
+        margin: 5px;
+        text-align: start;
+    }
+    
+    .hero {
+        background-image: url("/images/vehicles/delorean.jpg");
+        border: 0;
+        padding-left: 50px;
+    }
+
+    article {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 10px;
+    }
+
+    article section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    article section:first-of-type {
+        order: 2;
+    }
+    
+    article section:last-of-type {
+        order: 1;
+    }
+
+    .upgrades {
+        margin: auto 0;
+    }
+
+    .reviews {
+        line-height: 40px;
+        font-size: 16px;
+        margin: auto 0;
+    }
+
+    figure {
+        width: 160px;
+        height: 100px;
+    }
+}

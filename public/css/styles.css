@@ -4,3 +4,176 @@
 *:after {
   box-sizing: border-box;
 }
+
+:root {
+  --primary: #29aec5;
+  --black: #000000;
+  --white: #ffffff;
+  --hover: rgba(32, 131, 148, 0.973);
+  --button: #704D2C;
+}
+
+body {
+  font-family: 'Merriweather', serif;
+  color: var(--black);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: auto;
+}
+
+/* Header Styles */
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin: 30px 10px;
+}
+
+#top-header a {
+  text-decoration: none;
+  color: var(--black);
+}
+
+.siteName {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#tools {
+  font-size: 16px;
+  justify-self: end;
+}
+
+/* Nav Styles */
+nav {
+  display: grid;
+  background-color: var(--black);
+  color: var(--white);
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 5px 0px;
+  display: flex;
+}
+
+nav ul li {
+  margin: auto;
+  padding: .50rem 2vw;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Main Styles */
+main {
+  background: white;
+  padding: 10px 0px;
+  border-radius: 8px;
+  flex: 1;
+}
+
+h2 {
+  font-size: 18px;
+  margin: 5px;
+  text-align: center;
+}
+
+section {
+  padding-top: 10px;
+  margin: 0px 10px;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-image: url("/images/vehicles/delorean-tn.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  border-top: 1.5px solid black;
+  border-bottom: 1.5px solid black;
+  padding: 20px;
+  margin: 0;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(228, 227, 227, 0.514);
+  color: var(--black);
+  padding: 15px;
+  border-radius: 8px;
+  max-width: 300px;
+}
+
+.hero-content a {
+  text-decoration: none;
+  color: var(--black);
+}
+
+.hero-content img {
+  max-width: 120px;
+  align-self: center;
+  cursor: pointer;
+}
+
+article h2 {
+  margin-bottom: 10px;
+}
+
+.reviews {
+  padding-left: 18px;
+  line-height: 32px;
+  margin: 0;
+}
+
+.upgrades {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  justify-items: center;
+}
+
+.upgrades div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+figure {
+  background-color: var(--primary);
+  width: 130px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 2px solid black;
+  margin: auto;
+  transition: 0.3s;
+}
+
+figure:hover {
+  background-color: var(--hover);
+}
+
+figure img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: var(--primary);
+  font-weight: bold;
+  margin-top: 20px;
+}
