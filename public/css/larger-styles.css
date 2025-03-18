@@ -74,4 +74,14 @@
         width: 160px;
         height: 100px;
     }
+
+    /* Database Items Styles */
+    #inv-display li {
+        list-style-type: none;
+        display: block;
+    }
+      
+    .namePrice {
+        text-align: start;
+    }
 }
