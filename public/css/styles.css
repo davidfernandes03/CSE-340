@@ -247,7 +247,7 @@ footer p {
 /* Error Link */
 #int-error a {
   text-decoration: none;
-  color: rgb(70, 70, 70);
+  color: #00142A;
 }
 
 #int-error a:hover {
