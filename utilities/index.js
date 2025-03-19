@@ -48,13 +48,34 @@ Util.buildClassificationGrid = async function(data){
       + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
       grid += '</div>'
       grid += '</li>'
-      grid += '<hr />'
     })
     grid += '</ul>'
   } else { 
     grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
+}
+
+/* ****************************************
+ * Build the vehicle detail view HTML
+ * **************************************** */
+Util.buildDetailView = function(vehicle) {
+  if (!vehicle) {
+    return '<p class="notice">Vehicle details not available.</p>'
+  }
+
+  return `
+    <div class="vehicle-content">
+      <img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">
+      <div class="vehicle-info">
+        <h2><strong>${vehicle.inv_make} ${vehicle.inv_model} Details</strong></h2>
+        <p class="back-line"><strong>Price:</strong> $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>
+        <p><strong>Description:</strong> ${vehicle.inv_description}</p>
+        <p class="back-line"><strong>Color:</strong> ${vehicle.inv_color}</p>
+        <p><strong>Miles:</strong> ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)}</p>
+      </div>
+    </div>
+  `
 }
 
 /* ****************************************

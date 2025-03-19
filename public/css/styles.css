@@ -54,7 +54,6 @@ nav ul {
   margin: 0;
   padding: 5px 0px;
   display: flex;
-  
 }
 
 nav ul li {
@@ -69,6 +68,13 @@ nav ul li a {
   color: var(--white);
   cursor: pointer;
   text-decoration: none;
+  padding: 8px;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: var(--white);
+  color: var(--black);
 }
 
 /* Main Styles */
@@ -190,10 +196,39 @@ figure img {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  border-bottom: 1px solid black;
+  padding: 15px 0px;
 }
 
-.namePrice {
-  text-align: center;
+#inv-display img { transition: 0.3s; }
+#inv-display img:hover { box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.486); }
+
+.namePrice { text-align: center; }
+.namePrice h2 { margin: 0; }
+.namePrice a { text-decoration: none; }
+.namePrice a:hover { text-decoration: underline; }
+
+/* Vehicles Details Styles */
+.vehicle-content {
+  display: block;
+  width: 100%;
+  padding: 15px;
+}
+
+.vehicle-content img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.vehicle-info p {
+  margin: 10px 0px;
+  padding: 10px;
+}
+
+.vehicle-info .back-line {
+  background-color: #f0f0f0;
 }
 
 /* Footer Styles */
@@ -203,4 +238,23 @@ footer {
   background-color: var(--primary);
   font-weight: bold;
   margin-top: 20px;
+}
+
+footer p {
+  margin: 10px;
+}
+
+/* Error Link */
+#int-error a {
+  text-decoration: none;
+  color: rgb(70, 70, 70);
+}
+
+#int-error a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  text-align: center;
+  padding: 10px;
 }
