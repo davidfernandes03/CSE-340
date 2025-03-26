@@ -5,13 +5,20 @@
 <% if (notice) { %>
     <div class="flash-message"><%= notice %></div>
 <% } %>
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error => { %>
+            <li><%= error.msg %></li>
+        <%  }) %>
+   </ul>
+<% } %>
 
 <main class="login-view">
     <h1><%= title %></h1>
 
-    <form action="/account/login" method="POST">
+    <form id="loginForm" action="/account/login" method="POST">
         <label for="account_email">Email:</label>
-        <input type="email" id="account_email" name="account_email" required>
+        <input type="email" id="account_email" name="account_email" required value="<%= locals.account_email %>">
 
         <label for="account_password">Password:</label>
         <input type="password" id="account_password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
