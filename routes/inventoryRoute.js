@@ -13,4 +13,7 @@ router.get("/detail/:inv_id", utilities.handleErrors(invController.buildByInvId)
 // Intentional error route
 router.get("/trigger-error", utilities.handleErrors(invController.triggerError));
 
+// Route for management page
+router.get("/", utilities.handleErrors(invController.buildManagementView));
+
 module.exports = router;

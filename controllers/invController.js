@@ -52,6 +52,23 @@ invCont.buildByInvId = async function (req, res, next) {
   }
 }
 
+/* ****************************************
+ * Render the management page
+ **************************************** */
+invCont.buildManagementView = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav()
+
+    res.render("inventory/management", {
+      title: "Inventory Management",
+      nav,
+      message: "Testing Page",
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
 /* ***************************
  *  Intentionally Trigger a 500 Error
  * ************************** */
@@ -61,6 +78,6 @@ invCont.triggerError = async function (req, res, next) {
   } catch (error) {
     next(error);
   }
-};
+}
 
 module.exports = invCont
