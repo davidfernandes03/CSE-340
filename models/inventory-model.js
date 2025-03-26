@@ -1,3 +1,4 @@
+const { query } = require("express-validator")
 const pool = require("../database/")
 
 /* ***************************
@@ -43,8 +44,20 @@ async function getInventoryById(inv_id) {
   }
 }
 
+async function addClassification(classification_name) {
+  try {
+    const sql = "INSERT INTO classification (classification_name) VALUES ($1) RETURNING *"
+    const result = await pool.query(sql, [classification_name])
+    return result.rowCount
+  } catch (error) {
+    console.error("addClassification error: " + error)
+    return null
+  }
+}
+
 module.exports = {
   getClassifications,
   getInventoryByClassificationId, 
-  getInventoryById
+  getInventoryById,
+  addClassification
 }

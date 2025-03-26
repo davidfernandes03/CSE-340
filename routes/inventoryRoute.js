@@ -16,4 +16,10 @@ router.get("/trigger-error", utilities.handleErrors(invController.triggerError))
 // Route for management page
 router.get("/", utilities.handleErrors(invController.buildManagementView));
 
+// Route to display the Add Classification form
+router.get("/add-classification", utilities.handleErrors(invController.buildAddClassificationView));
+
+// Route to process the form submission
+router.post("/add-classification", utilities.handleErrors(invController.addClassification));
+
 module.exports = router;

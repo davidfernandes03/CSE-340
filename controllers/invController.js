@@ -69,6 +69,66 @@ invCont.buildManagementView = async function (req, res, next) {
   }
 }
 
+/* ****************************************
+ * Render the Add Classification Page
+ **************************************** */
+invCont.buildAddClassificationView = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav()
+    res.render("inventory/add-classification", {
+      title: "Add Classification",
+      nav,
+      message: "Add a new classification for the navigation bar!",
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+/* ****************************************
+ * Process New Classification Submission
+ **************************************** */
+invCont.addClassification = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav()
+    const { classification_name } = req.body
+
+    // Server-side validation
+    if (!/^[a-zA-Z0-9]+$/.test(classification_name)) {
+      req.flash("notice", "Invalid classification name. No spaces or special characters allowed.")
+      return res.render("inventory/add-classification", {
+        title: "Add New Classification",
+        nav,
+        message: req.flash("notice"),
+      })
+    }
+
+    const insertResult = await invModel.addClassification(classification_name)
+
+    if (insertResult) {
+      req.flash("notice", "New classification added successfully!");
+      let nav = await utilities.getNav();
+
+      return res.render("inventory/add-classification", {
+          title: "Add New Classification",
+          nav,
+          message: req.flash("notice"),
+        })
+    } else {
+      req.flash("notice", "Error adding classification. Please try again.")
+      let nav = await utilities.getNav();
+      
+      return res.render("inventory/add-classification", {
+        title: "Add New Classification",
+        nav,
+        message: req.flash("notice"),
+      })
+    }
+  } catch (error) {
+    next(error)
+  }
+}
+
 /* ***************************
  *  Intentionally Trigger a 500 Error
  * ************************** */
