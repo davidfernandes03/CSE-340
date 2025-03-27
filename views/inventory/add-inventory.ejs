@@ -1,0 +1,52 @@
+<head>
+    <link rel="stylesheet" href="/css/account.css">
+</head>
+
+<% if (message) { %>
+    <p class="flash-message"><%= message %></p>
+<% } %>
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+    <%  }) %>
+   </ul>
+<% } %>
+
+<main class="manage">
+    <h1>Add New Vehicle</h1>
+
+    <form action="/inv/add-inventory" method="post">
+        <label for="inv_make">Make (Brand):</label>
+        <input type="text" id="inv_make" name="inv_make" required value="<%= locals.inv_make %>">
+
+        <label for="inv_model">Model:</label>
+        <input type="text" id="inv_model" name="inv_model" required value="<%= locals.inv_model %>">
+
+        <label for="inv_year">Year:</label>
+        <input type="number" id="inv_year" name="inv_year" min="1900" max="2099" required value="<%= locals.inv_year %>">
+
+        <label for="inv_description">Description:</label>
+        <textarea id="inv_description" name="inv_description" required><%= locals.inv_description %></textarea>
+
+        <label for="inv_image">Image Path:</label>
+        <input type="text" id="inv_image" name="inv_image" value="/images/vehicles/no-image.png" required>
+
+        <label for="inv_thumbnail">Thumbnail Path:</label>
+        <input type="text" id="inv_thumbnail" name="inv_thumbnail" value="/images/vehicles/no-image-tn.png" required>
+
+        <label for="inv_price">Price ($):</label>
+        <input type="number" id="inv_price" name="inv_price" step="0.01" required value="<%= locals.inv_price %>">
+
+        <label for="inv_miles">Miles:</label>
+        <input type="number" id="inv_miles" name="inv_miles" required value="<%= locals.inv_miles %>">
+
+        <label for="inv_color">Color:</label>
+        <input type="text" id="inv_color" name="inv_color" required value="<%= locals.inv_color %>">
+
+        <label for="classification_id">Classification:</label>
+        <%- classificationSelect %>
+
+        <button type="submit">Add Vehicle</button>
+    </form>
+</main>

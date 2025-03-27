@@ -129,6 +129,88 @@ invCont.addClassification = async function (req, res, next) {
   }
 }
 
+/* ****************************************
+ * Render the Add Vehicle Page
+ **************************************** */
+invCont.buildAddInventoryView = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav()
+    let classificationSelect = await utilities.buildClassificationList()
+
+    res.render("inventory/add-inventory", {
+      title: "Add New Vehicle",
+      nav,
+      classificationSelect,
+      message: "Insert the new vehicle informations!",
+      errors: null
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+/* ****************************************
+ * Process New Classification Submission
+ **************************************** */
+invCont.addInventoryItem = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav()
+    let classificationSelect = await utilities.buildClassificationList()
+    const { 
+      inv_make, inv_model, inv_year, inv_description, 
+      inv_image, inv_thumbnail, inv_price, inv_miles, 
+      inv_color, classification_id 
+    } = req.body
+
+    if (!inv_make || !inv_model || !inv_year || !inv_description || !inv_image || !inv_thumbnail || !inv_price || !inv_miles ||
+    !inv_color || !classification_id) {
+      req.flash("notice", "⚠️ All fields are required. Don't try to play the smart!");
+      return res.render("inventory/add-inventory", {
+        title: "Add New Vehicle",
+        nav,
+        errors: null,
+        classificationSelect,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_price,
+        inv_miles,
+        inv_color,
+        message: req.flash("notice"),
+      });
+    }
+
+    const insertResult = await invModel.addInventoryItem(req.body)
+
+    if (insertResult) {
+      req.flash("notice", "New vehicle added successfully!")
+      let nav = await utilities.getNav();
+
+      return res.render("inventory/add-inventory", {
+        title: "Add New Vehicle",
+        nav,
+        errors: null,
+        classificationSelect,
+        message: req.flash("notice"),
+      })
+    } else {
+      req.flash("notice", "Error adding vehicle. Please try again.");
+      let nav = await utilities.getNav();
+      
+      return res.render("inventory/add-inventory", {
+        title: "Add New Vehicle",
+        nav,
+        errors: null,
+        classificationSelect,
+        message: req.flash("notice"),
+      });
+    }
+  } catch (error) {
+    next(error)
+  }
+}
+
 /* ***************************
  *  Intentionally Trigger a 500 Error
  * ************************** */

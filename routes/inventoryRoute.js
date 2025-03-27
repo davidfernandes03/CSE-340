@@ -22,4 +22,10 @@ router.get("/add-classification", utilities.handleErrors(invController.buildAddC
 // Route to process the form submission
 router.post("/add-classification", utilities.handleErrors(invController.addClassification));
 
+// Route to display the Add Vehicle form
+router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventoryView));
+
+// Route to process a new addition
+router.post("/add-inventory", utilities.checkInventoryData, utilities.handleErrors(invController.addInventoryItem));
+
 module.exports = router;

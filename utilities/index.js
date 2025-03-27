@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const { validationResult } = require("express-validator")
 const Util = {}
 
 /* ************************
@@ -76,6 +77,59 @@ Util.buildDetailView = function(vehicle) {
       </div>
     </div>
   `
+}
+
+/* **************************************
+* Build the classification view HTML
+* ************************************ */
+Util.buildClassificationList = async function (classification_id = null) {
+  let data = await invModel.getClassifications()
+  let classificationList = '<select name="classification_id" id="classificationList" required>'
+  classificationList += "<option value=''>Choose a Classification</option>"
+
+  data.rows.forEach((row) => {
+    classificationList += `<option value="${row.classification_id}"`
+    if (classification_id != null && row.classification_id == classification_id) {
+      classificationList += " selected"
+    }
+    classificationList += `>${row.classification_name}</option>`
+  })
+
+  classificationList += "</select>"
+  return classificationList
+}
+
+/* ******************************
+ * Sticky method
+ * ***************************** */
+Util.checkInventoryData = async (req, res, next) => {
+  const { 
+    inv_make, inv_model, inv_year, inv_description, 
+    inv_price, inv_miles, inv_color 
+  } = req.body
+  let errors = []
+  errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    let classificationSelect = await utilities.buildClassificationList(classification_id)
+
+    res.render("inventory/add-inventory", {
+      errors,
+      title: "Add New Vehicle",
+      nav,
+      classificationSelect,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_price,
+      inv_miles,
+      inv_color,
+    })
+    return
+  }
+  next()
 }
 
 /* ****************************************

@@ -1,4 +1,4 @@
-.login-view {
+.login-view, .manage {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
@@ -8,27 +8,27 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.login-view h1 {
+.login-view h1, .manage h1 {
     text-align: center;
 }
 
-.login-view form {
+.login-view form, .manage form {
     display: flex;
     flex-direction: column;
 }
 
-.login-view label {
+.login-view label, .manage label {
     margin-top: 10px;
 }
 
-.login-view input {
+.login-view input, .manage input {
     padding: 8px;
     margin-top: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
-.login-view button {
+.login-view button, .manage button {
     margin-top: 15px;
     padding: 10px;
     background: #004a99;
@@ -39,8 +39,17 @@
     transition: 0.3s;
 }
 
-.login-view button:hover {
+.login-view button:hover, .manage button:hover {
     background: rgba(0, 54, 112, 0.644);
+}
+
+textarea {
+    resize: vertical;
+}
+
+.manage #classificationList {
+    padding: 5px 0px;
+    cursor: pointer;
 }
 
 .flash-message {
