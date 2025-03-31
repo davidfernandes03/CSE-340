@@ -2,8 +2,8 @@
     <link rel="stylesheet" href="/css/account.css">
 </head>
 
-<% if (notice) { %>
-    <div class="flash-message"><%= notice %></div>
+<% if (typeof message !== "undefined" && message) { %>
+    <p class="flash-message"><%= message %></p>
 <% } %>
 <% if (errors) { %>
     <ul class="notice">

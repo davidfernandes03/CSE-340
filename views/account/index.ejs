@@ -1,0 +1,19 @@
+<head>
+    <link rel="stylesheet" href="/css/account.css">
+</head>
+
+<% if (typeof message !== "undefined" && message) { %>
+    <p class="flash-message"><%= message %></p>
+<% } %>
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error => { %>
+            <li><%= error.msg %></li>
+        <%  }) %>
+   </ul>
+<% } %>
+
+<main class="login-view">
+    <h1><%= title %></h1>
+    <p>You're logged in!</p>
+</main>
