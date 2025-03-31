@@ -102,7 +102,7 @@ Util.buildClassificationList = async function (classification_id = null) {
 }
 
 /* ******************************
- * Sticky method
+ * Check Inventory
  * ***************************** */
 Util.checkInventoryData = async (req, res, next) => {
   const { 
@@ -128,6 +128,42 @@ Util.checkInventoryData = async (req, res, next) => {
       inv_price,
       inv_miles,
       inv_color,
+    })
+    return
+  }
+  next()
+}
+
+/* ******************************
+ * Check Update
+ * ***************************** */
+Util.checkUpdateData = async (req, res, next) => {
+  const { 
+    inv_make, inv_model, inv_year, inv_description, 
+    inv_price, inv_miles, inv_color, inv_id, classification_id
+  } = req.body
+  
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    let classificationSelect = await utilities.buildClassificationList(classification_id)
+    const itemName = `${inv_make} ${inv_model}`
+
+    res.render("inventory/edit-inventory", {
+      errors,
+      title: "Edit " + itemName,
+      nav,
+      classificationSelect,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_price,
+      inv_miles,
+      inv_color,
+      inv_id,
+      classification_id
     })
     return
   }
