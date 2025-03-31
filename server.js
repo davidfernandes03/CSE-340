@@ -10,6 +10,7 @@ const pool = require('./database/')
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
+const flash = require("connect-flash")
 const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
@@ -34,9 +35,11 @@ app.use(session({
 }))
 
 // Express Messages Middleware
-app.use(require('connect-flash')())
+app.use(flash())
 app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
+  res.locals.notice = req.flash("notice")
+  res.locals.error = req.flash("error")
   next()
 })
 

@@ -28,4 +28,7 @@ router.get("/add-inventory", utilities.handleErrors(invController.buildAddInvent
 // Route to process a new addition
 router.post("/add-inventory", utilities.checkInventoryData, utilities.handleErrors(invController.addInventoryItem));
 
+// Inventory Management route
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+
 module.exports = router;

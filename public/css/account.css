@@ -52,12 +52,36 @@ textarea {
     cursor: pointer;
 }
 
+.manage .add-items {
+    list-style-type: none;
+    display: flex;
+    gap: 5px;
+    padding: 0 0 20px 0;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.425);
+}
+
+.manage .add-items li {
+    text-align: center;
+}
+
+.manage .add-items a {
+    text-decoration: none;
+}
+
+.manage .add-items a:hover {
+    text-decoration: underline;
+}
+
+#classificationList {
+    border: 2px solid rgba(0, 0, 0, 0.304)
+}
+
 .flash-message {
     text-align: center;
     margin: 10px 0px;
 }
 
-p {
+h2, p {
     text-align: center;
 }
 
@@ -65,4 +89,43 @@ p {
     padding: 4px;
     font-size: 0.8rem;
     text-align: justify;
+}
+
+#inventoryDisplay {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+    border: 2px solid rgba(0, 0, 0, 0.304);
+    font-family: Arial, sans-serif;
+}
+
+#inventoryDisplay thead {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    text-align: center;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+    border: 2px solid rgba(0, 0, 0, 0.304);
+    padding: 10px;
+    text-align: left;
+}
+
+#inventoryDisplay tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+#inventoryDisplay tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+#inventoryDisplay a {
+    color: #004a99;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#inventoryDisplay a:hover {
+    text-decoration: underline;
 }
