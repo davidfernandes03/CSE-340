@@ -43,6 +43,10 @@
     background: rgba(0, 54, 112, 0.644);
 }
 
+#delete-btn {
+    margin-top: 0;
+}
+
 textarea {
     resize: vertical;
 }
