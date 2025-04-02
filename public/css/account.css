@@ -85,7 +85,7 @@ textarea {
     margin: 10px 0px;
 }
 
-h2, p {
+h2, h3, p {
     text-align: center;
 }
 
@@ -132,4 +132,34 @@ h2, p {
 
 #inventoryDisplay a:hover {
     text-decoration: underline;
+}
+
+.accountGeneralView {
+    margin-top: 20px;
+    padding: 10px 0;
+    border-top: 2px solid rgba(0, 0, 0, 0.304);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.304);
+}
+
+.accountGeneralView p { margin-bottom: 10px; }
+.accountExclusiveView p { margin-bottom: 0px; }
+.accountGeneralView a, .accountExclusiveView a { text-decoration: none; }
+
+.accountGeneralView a:hover, .accountExclusiveView a:hover { 
+    text-decoration: underline; 
+}
+
+#update-title {
+    margin-bottom: 20px;
+}
+
+#account-update {
+    margin: 10px 0;
+    padding: 10px 0;
+    border-top: 2px solid rgba(0, 0, 0, 0.304);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.304);
+}
+
+#account-update button {
+    margin-bottom: 10px;
 }

@@ -182,21 +182,23 @@ Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)
 **************************************** */
 Util.checkJWTToken = (req, res, next) => {
   if (req.cookies.jwt) {
-   jwt.verify(
-    req.cookies.jwt,
-    process.env.ACCESS_TOKEN_SECRET,
-    function (err, accountData) {
-     if (err) {
-      req.flash("Please log in")
-      res.clearCookie("jwt")
-      return res.redirect("/account/login")
-     }
-     res.locals.accountData = accountData
-     res.locals.loggedin = 1
-     next()
+    jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      function (err, accountData) {
+      if (err) {
+        req.flash("Please log in")
+        res.clearCookie("jwt")
+        return res.redirect("/account/login")
+      }
+
+      res.locals.accountData = accountData
+      res.locals.loggedin = 1
+      next()
     })
   } else {
-   next()
+    res.locals.loggedin = 0
+    next()
   }
 }
 
@@ -207,7 +209,35 @@ Util.checkLogin = (req, res, next) => {
   if (res.locals.loggedin) {
     next()
   } else {
-    req.flash("notice", "Please log in.")
+    req.session.message = "Please log in."
+    return res.redirect("/account/login")
+  }
+}
+
+/* ****************************************
+ * Middleware to check if the account is 
+ * Employee or Admin for Inventory access
+ **************************************** */
+Util.checkAccountType = (req, res, next) => {
+  if (req.cookies.jwt) {
+    jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET, (err, accountData) => {
+      if (err) {
+        req.session.message = "Please log in."
+        res.clearCookie("jwt")
+        return res.redirect("/account/login")
+      }
+
+      res.locals.accountData = accountData
+
+      if (accountData.account_type === "Employee" || accountData.account_type === "Admin") {
+        return next()
+      } else {
+        req.session.message = "You do not have permission to access this resource.";
+        return res.redirect("/account/login")
+      }
+    })
+  } else {
+    req.session.message = "Please log in."
     return res.redirect("/account/login")
   }
 }

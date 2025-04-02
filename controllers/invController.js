@@ -64,7 +64,7 @@ invCont.buildManagementView = async function (req, res, next) {
       title: "Inventory Management",
       nav,
       classificationSelect,
-      message: "Testing Page",
+      message: ""
     })
   } catch (error) {
     next(error)

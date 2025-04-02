@@ -1,0 +1,51 @@
+<head>
+    <link rel="stylesheet" href="/css/account.css">
+</head>
+
+<% if (typeof message !== "undefined" && message) { %>
+    <p class="flash-message"><%= message %></p>
+<% } %>
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error => { %>
+            <li><%= error.msg %></li>
+        <%  }) %>
+   </ul>
+<% } %>
+
+<main class="login-view">
+    <h1 id="update-title"><%= title %></h1>
+
+    <h2>Account Update</h2>
+    <form id="account-update" action="/account/update/<%= accountData.account_id %>" method="POST">
+        <label for="account_firstname">First Name:</label>
+        <input type="text" id="account_firstname" name="account_firstname" value="<%= accountData.account_firstname %>" required>
+        
+        <label for="account_lastname">Last Name:</label>
+        <input type="text" id="account_lastname" name="account_lastname" value="<%= accountData.account_lastname %>" required>
+
+        <label for="account_email">Email Address:</label>
+        <input type="email" id="account_email" name="account_email" value="<%= accountData.account_email %>" required>
+        
+        <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+        <button type="submit">Update Account</button>
+    </form>
+
+    <h2>Change Password</h2>
+    <p>Enter a new password to change your current password.</p>
+    
+    <form action="/account/update-password" method="POST">
+        <label for="password">New Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <label for="confirmPassword">Confirm New Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+        <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+        <span class="password_requirements">⚠️ Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+        
+        <button type="submit">Change Password</button>
+    </form>
+</main>
