@@ -82,10 +82,21 @@ async function updatePasswordModel(account_id, hashedPassword) {
   }
 }
 
+/* *****************************
+* Final Enhancement -> Return account data using types
+* ***************************** */
+async function getAccountsByType(account_type) {
+  return await pool.query(
+    "SELECT account_firstname, account_lastname, account_type FROM account WHERE account_type = $1",
+    [account_type]
+  )
+}
+
 module.exports = { registerAccount, 
   checkExistingEmail, 
   getAccountByEmail,
   getAccountById, 
   updateAccountModel,
-  updatePasswordModel
+  updatePasswordModel,
+  getAccountsByType
 };

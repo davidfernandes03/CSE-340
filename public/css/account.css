@@ -51,9 +51,10 @@ textarea {
     resize: vertical;
 }
 
-.manage #classificationList {
+.manage #classificationList, #accountTypeList {
     padding: 5px 0px;
     cursor: pointer;
+    border: 2px solid rgba(0, 0, 0, 0.304)
 }
 
 .manage .add-items {
@@ -64,21 +65,9 @@ textarea {
     border-bottom: 2px solid rgba(0, 0, 0, 0.425);
 }
 
-.manage .add-items li {
-    text-align: center;
-}
-
-.manage .add-items a {
-    text-decoration: none;
-}
-
-.manage .add-items a:hover {
-    text-decoration: underline;
-}
-
-#classificationList {
-    border: 2px solid rgba(0, 0, 0, 0.304)
-}
+.manage .add-items li { text-align: center;}
+.manage .add-items a { text-decoration: none; }
+.manage .add-items a:hover { text-decoration: underline; }
 
 .flash-message {
     text-align: center;
@@ -95,7 +84,7 @@ h2, h3, p {
     text-align: justify;
 }
 
-#inventoryDisplay {
+#inventoryDisplay, #accountDisplay {
     width: 100%;
     margin-top: 10px;
     border-collapse: collapse;
@@ -103,24 +92,26 @@ h2, h3, p {
     font-family: Arial, sans-serif;
 }
 
-#inventoryDisplay thead {
+#inventoryDisplay thead, #accountDisplay thead {
     background-color: #f4f4f4;
     font-weight: bold;
     text-align: center;
 }
 
 #inventoryDisplay th,
-#inventoryDisplay td {
+#inventoryDisplay td,
+#accountDisplay th,
+#accountDisplay td {
     border: 2px solid rgba(0, 0, 0, 0.304);
     padding: 10px;
     text-align: left;
 }
 
-#inventoryDisplay tbody tr:nth-child(odd) {
+#inventoryDisplay tbody tr:nth-child(odd), #accountDisplay tbody tr:nth-child(odd) {
     background-color: #ffffff;
 }
 
-#inventoryDisplay tbody tr:nth-child(even) {
+#inventoryDisplay tbody tr:nth-child(even), #accountDisplay tbody tr:nth-child(even) {
     background-color: #f3f3f3;
 }
 
@@ -138,11 +129,14 @@ h2, h3, p {
     margin-top: 20px;
     padding: 10px 0;
     border-top: 2px solid rgba(0, 0, 0, 0.304);
-    border-bottom: 2px solid rgba(0, 0, 0, 0.304);
 }
 
-.accountGeneralView p { margin-bottom: 10px; }
-.accountExclusiveView p { margin-bottom: 0px; }
+.accountExclusiveView {
+    border-top: 2px solid rgba(0, 0, 0, 0.304);
+    padding-bottom: 10px;
+}
+
+.accountGeneralView p, .accountExclusiveView p { margin-bottom: 10px; }
 .accountGeneralView a, .accountExclusiveView a { text-decoration: none; }
 
 .accountGeneralView a:hover, .accountExclusiveView a:hover { 

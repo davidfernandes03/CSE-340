@@ -331,5 +331,18 @@ async function updatePassword(req, res, next) {
   }
 }
 
+/* *****************************
+* Final Enhancement -> Get account data with type
+* ***************************** */
+async function accountFilter(req, res, next) {
+  try {
+    const account_type = req.params.account_type
+    const result = await accountModel.getAccountsByType(account_type)
+    return res.json(result.rows)
+  } catch (error) {
+    next(error)
+  }
+}
+
 // Exporting functions
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagementView, accountLogout, buildUpdateAccountView, updateAccount, updatePassword }
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagementView, accountLogout, buildUpdateAccountView, updateAccount, updatePassword, accountFilter }

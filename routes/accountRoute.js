@@ -50,4 +50,7 @@ router.post(
     utilities.handleErrors(accountController.updatePassword)
 );
 
+// 🔒 Final Enhancement -> Accounts filter route
+router.get("/getAccounts/:account_type", utilities.checkLogin, accountController.accountFilter)
+
 module.exports = router;
